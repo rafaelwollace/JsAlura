@@ -1,38 +1,33 @@
-var titulo = document.querySelector("h1");
-titulo.textContent = "RAFAEL TITULO";
-
-
-
-
 var pacientes = document.querySelectorAll(".paciente");
 
 for (var i = 0; i < pacientes.length; i++) {
-
     var paciente = pacientes[i];
-
     var tdPeso = paciente.querySelector(".info-peso");
-    var peso = tdPeso.textContent;
-
     var tdAltura = paciente.querySelector(".info-altura");
-    var altura = tdAltura.textContent;
 
     var tdImc = paciente.querySelector(".info-imc");
 
-    var pesoEhValido = true;
+    var peso = tdPeso.textContent;
+    var altura = tdAltura.textContent;
+
     var alturaEhValida = true;
+    var pesoEhValido = true;
 
-    if (peso < 0 || peso > 1000) {
+    if (peso <= 0 || peso >= 1000) {
+        console.log("Peso inválido");
+        tdImc.textContent = "Peso inválido!";
         pesoEhValido = false;
-        tdImc.textContent = 'Peso Invalido';
     }
 
-    if (altura < 0 || altura > 3.000) {
+    if (altura <= 0 || altura >= 3.0) {
+        console.log("Altura inválida");
+        tdImc.textContent = "Altura inválida!";
         alturaEhValida = false;
-        tdImc.textContent = 'Altura Invalido';
     }
 
-    if (alturaEhValida && pesoEhValido) {
+    if (pesoEhValido && alturaEhValida) {
         var imc = peso / (altura * altura);
+        tdImc.textContent = imc;
         tdImc.textContent = imc.toFixed(2);
     }
 }
